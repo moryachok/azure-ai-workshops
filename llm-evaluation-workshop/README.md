@@ -24,6 +24,20 @@ The expected duration for the entire workshop is approximately **2 hours**.
 
 ## Explore Assets
 
+Download this git repository with all the assets. 
+This will let you easily explore the internals and to use the sample evaluation datasets later on in the hands-on labs.
+
+1. Option #1 - download as zip archive and unzip.
+
+![alt text](assets/download-zip.png)
+
+2. Option #2 - use git utility
+
+```bash
+# navigate to the directory of your choice on your local machine
+git clone https://github.com/moryachok/azure-ai-workshops.git
+```
+
 In the context of this workshop we are using call transcript summarization use case.
 For this workshop, we have prepared synthetic data containing call transcripts of three calls. These transcripts are stored in the `transcripts` folder. The data was generated using the GPT-4o model, and the prompt instructions used for generating these transcripts can be found in the `transcript-gen.prompty` file. If you'd like to generate additional transcripts, you can use the same prompt file.
 
