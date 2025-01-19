@@ -27,11 +27,11 @@ The expected duration for the entire workshop is approximately **2 hours**.
 Download this git repository with all the assets. 
 This will let you easily explore the internals and to use the sample evaluation datasets later on in the hands-on labs.
 
-1. Option #1 - download as zip archive and unzip.
+**1. Option #1 - download as zip archive and unzip.**
 
 ![alt text](assets/download-zip.png)
 
-2. Option #2 - use git utility
+**2. Option #2 - use git utility**
 
 ```bash
 # navigate to the directory of your choice on your local machine
