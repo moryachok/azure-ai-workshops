@@ -1,8 +1,10 @@
 # Use automated evaluation with model-as-a-judge to find the best performing model for call transcript summarization.
 
 In this section you will learn how to create and run an automated AI-assisted evaluation.
-You will use `evaluations` datasets we providing as part of this workshop.
+You will use `evaluations` datasets we providing as part of this workshop. The `evaluations` folder includes several datasets, each containing the same three sample input prompts along with the corresponding LLM responses generated with different models.
 You will use [LLM model as a judge](https://learn.microsoft.com/en-us/azure/databricks/generative-ai/agent-evaluation/llm-judge-metrics) to evaluate the responses of the various models. To act as a judge you should pick the most prominent model, gpt-4o is a good candidate.
+
+You are going to use 
 
 ## 1. Create automated evaluation
 
@@ -18,12 +20,14 @@ You will use [LLM model as a judge](https://learn.microsoft.com/en-us/azure/data
 7. Tags are used to filter the results of the evaluation. Add the following tags:
    - **type** = `summarization`
    - **model** = `gpt-3.5-turbo-0125`
+> **Note:** You are using tags to easily filter the results of the evaluation later in the [Explore Evaluations Results](#2-explore-evaluation-results) section.
+
 8. Click **Next**.
 
 ![alt text](assets/lab3-2.png)
 
 9.  Click on **Add Your Dataset**:
-   - Upload the dataset: `evaluations/summarization.gpt-3.5-turbo-0125.jsonl`.
+   - Upload the dataset: [`evaluations/summarization.gpt-3.5-turbo-0125.jsonl`](./evaluations/summarization.gpt-3.5-turbo-0125.jsonl).
 10. Validate that you see a preview of the top 3 rows from your dataset.
 
 > **Note:** If you get the following warning: *Unable to preview the dataset. Ensure the dataset path is correct and leads directly to the data file (.csv or .jsonl).*
@@ -48,10 +52,7 @@ You will use [LLM model as a judge](https://learn.microsoft.com/en-us/azure/data
 
 Repeat the above for the rest of evaluation datasets in the `evaluations` directory:
 - summarization.gpt-4-turbo-2024-04-09.jsonl
-- summarization.gpt-4o-2024-11-20.jsonl
 - summarization.gpt-4o-mini-2024-07-18.jsonl
-- summarization.phi3-medium-128k.jsonl
-- summarization.phi3-mini-128k.jsonl
 - summarization.phi3-small-128k.jsonl
 
 You have launched 7 evaluation processes to review the quality of multiple models for calls transcripts summarization. By the end of the evaluation run you will get the rating per model to help you choose the best model for the job.
