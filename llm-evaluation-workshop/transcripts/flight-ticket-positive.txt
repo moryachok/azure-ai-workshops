@@ -1,0 +1,95 @@
+[Michael Roberts] - 14:32
+Hi there! I’m looking to buy a flight ticket to Miami for this weekend. Can you help me out?
+
+[Agent-Jessica] - 14:32
+Hi, Michael! Absolutely, I’d love to help you with that. Let’s get started. What day are you planning to fly out?
+
+[Michael Roberts] - 14:33
+I’m thinking Saturday morning, and I’ll come back Sunday evening.
+
+[Agent-Jessica] - 14:33
+Perfect, a quick weekend getaway! Let me check some options for you. Where will you be flying from?
+
+[Michael Roberts] - 14:34
+I’ll be flying out of Chicago.
+
+[Agent-Jessica] - 14:34
+Got it. Give me just a second to pull up the flights for you.
+
+[Michael Roberts] - 14:35
+Sure, take your time.
+
+[Agent-Jessica] - 14:36
+Alright, Michael, here’s what I found. There’s a 7:00 AM direct flight to Miami on Saturday, and for the return, there’s a 7:30 PM direct flight on Sunday. Does that work for you?
+
+[Michael Roberts] - 14:36
+Yeah, those times sound perfect!
+
+[Agent-Jessica] - 14:37
+Great! Do you have a seating preference—window, aisle, or middle?
+
+[Michael Roberts] - 14:37
+Window, please.
+
+[Agent-Jessica] - 14:37
+Window seat, noted. Now, for baggage—are you traveling light, or do you need checked bags?
+
+[Michael Roberts] - 14:38
+Just a carry-on.
+
+[Agent-Jessica] - 14:38
+Got it! And would you like to add travel insurance for an extra $15?
+
+[Michael Roberts] - 14:39
+Hmm, sure, why not.
+
+[Agent-Jessica] - 14:39
+Awesome! So here’s the breakdown: your round-trip ticket with a carry-on and travel insurance comes to $325. Shall I go ahead and book it?
+
+[Michael Roberts] - 14:40
+Yeah, let’s do it!
+
+[Agent-Jessica] - 14:40
+Alright! Can I confirm your name as it appears on your ID?
+
+[Michael Roberts] - 14:41
+Yeah, it’s Michael Roberts.
+
+[Agent-Jessica] - 14:41
+Perfect. And can you provide an email address for your e-ticket?
+
+[Michael Roberts] - 14:42
+Sure, it’s michael.roberts@gmail.com.
+
+[Agent-Jessica] - 14:42
+Got it. Last step—would you like to pay with a card or use travel points?
+
+[Michael Roberts] - 14:43
+I’ll use my card.
+
+[Agent-Jessica] - 14:43
+Alright, please provide the card details whenever you’re ready.
+
+[Michael Roberts] - 14:44
+It’s a Visa, number 4111-1111-1111-1111, expiry 12/25, and the CVV is 123.
+
+[Agent-Jessica] - 14:44
+Thank you! Processing your payment now…
+
+[Michael Roberts] - 14:45
+Okay, great.
+
+[Agent-Jessica] - 14:46
+All done! You’re all set for your trip to Miami. You’ll receive your e-ticket in the next 5 minutes. Anything else I can help you with?
+
+[Michael Roberts] - 14:46
+Nope, that’s it. Thanks so much, Jessica!
+
+[Agent-Jessica] - 14:46
+You’re welcome, Michael! Have an amazing trip!
+
+[Michael Roberts] - 14:47
+Thanks! Have a great day.
+
+[Agent-Jessica] - 14:47
+You too! Goodbye!

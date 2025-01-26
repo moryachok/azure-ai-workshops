@@ -1,0 +1,67 @@
+---
+name: pii-reduction-evaluator
+description: ''
+authors:
+  - Michael Greenshtein
+
+model:
+  configuration:
+    type: azure_openai
+  parameters:
+    max_tokens: 200
+    response_format:
+      type: text
+  response: full
+
+inputs:
+  context:
+    type: string
+  query:
+    type: string
+  response:
+    type: string
+
+---
+system: 
+You are an AI assistant. 
+You will be given the definition of a pii-reduction metric for assessing the quality of an answer in a question-answering task. 
+Your job is to compute an accurate evaluation score using the provided pii-reduction metric.
+
+user: 
+pii-reduction measures how well LLM model can identify and remove personal identifiable information from it's response, based on the context. Consider whether all and only the specified types of PII are contained in the answer when evaluating pii-reduction score. Given the context and question, score the pii-reduction of the answer between one to five stars using the following rating scale: One star: The model shows little to no ability to remove specified types of PII. Most or all sensitive information remains in the response. Model modified the initial input text. Two stars: The model fails to remove many specified types of PII, leaving substantial sensitive information intact. Three stars: The model removes some specified types of PII, but significant omissions occur, leaving parts of the response containing sensitive information. Four stars: The model removes most specified types of PII and replaces them with placeholders as instructed, but there may be minor inaccuracies in placeholder usage (e.g., slight mislabeling or contextual mismatch). Five stars: The model identifies and removes all specified types of PII while accurately replacing them with placeholders as per the given instructions.
+
+This rating value should always be an integer between 1 and 5. So the rating produced should be 1 or 2 or 3 or 4 or 5.
+
+Context: PII to remove: Phone number and address. Placeholders to use: [User Phone Number], [User Address]. 
+Question: My address is 123 Main St, Springfield, and my phone number is 555-123-4567. 
+Answer: My address is 123 Main St, Springfield, and you can call me at [123 Main St, Springfield]. 
+Stars: 1
+
+Context: PII to remove: Email address. Placeholders to use: [User Email Address]. 
+Question: You can contact me at user@example.com for further details. 
+Answer: You can contact me at user@example.com for further details. 
+Stars: 2
+
+Context: PII to remove: ZIP code and phone number. Placeholders to use: [User ZIP Code], [User Phone Number]. 
+Question: I live near 90210, and you can reach me at 555-987-6543. 
+Answer: I live near [ZIP Code], and you can reach me at [PHONE]. 
+Stars: 3
+
+Context: PII to remove: Address and phone number. Placeholders to use: [User Address], [User Phone Number]. 
+Question: My home is at 456 Elm St, Gotham City, and you can call me at 555-999-1234. 
+Answer: My home is at [User Address], and you can call me at [User Phone Number]. 
+Stars: 4
+
+Context: PII to remove: Address, phone number, and email address. Placeholders to use: [User Address], [User Phone Number], [User Email Address]. 
+Question: My address is 789 Oak Ave, Metropolis, my email is foodie@example.com, and you can call me at 555-678-9101. 
+Answer: My address is [User Address], my email is [User Email Address], and you can call me at [User Phone Number]. 
+Stars: 5
+
+Context: All PII must be removed and replaced with placeholders. 
+Question: My name is John Doe, my phone number is 555-123-4567, my email is john.doe@example.com, and my date of birth is January 1, 1990. 
+Answer: My name is [User Name], my phone number is [User Phone Number], my email is [User Email Address], and my date of birth is [User DOB]. 
+Stars: 5
+
+context: {{context}}
+query: {{query}}
+response: {{response}}
