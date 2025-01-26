@@ -121,6 +121,10 @@ The code simply uses `pii-reduction-evaluator.prompty` you just downloaded to ev
 
 Run the code below in your preferred environment: locally or in the Azure ML notebook.
 
+> **NOTE: **If you are going to use Azure ML notebook go to [Using AzureML Notebook](#using-azureml-notebook) section.
+
+### Using Local Environment
+
 1. `AZURE_OPENAI_ENDPOINT` and `AZURE_OPENAI_API_KEY` environment variables are required for Authentication and Authorization.
 2. Ensure you have `python-dotenv` and `promptflow` installed.
 3. Run the code below
@@ -183,6 +187,18 @@ pii_reduction_score = pii_reduction_eval(
 print(f"pii_reduction_score={pii_reduction_score}")
 
 ```
+
+
+### Using AzureML notebook
+
+1. Ensure you have [AzureML up and running](https://learn.microsoft.com/en-us/azure/machine-learning/tutorial-azure-ml-in-a-day?view=azureml-api-2)
+2. Create Notebook
+3. Upload `evaluators` folder and `notebooks/pii-evaluator.ipynb`.
+4. Run `pii-evaluator.ipynb`
+
+![alt text](assets/lab4-5.png)
+
+**Examine PII evaluator response:**
 
 The code executes two nearly identical evaluation scenarios. In the first evaluation, all PII occurrences were identified, reduced, and replaced with appropriate placeholders, despite the absence of explicit instructions specifying the PII types to be replaced or the corresponding placeholders. As a result, the PII evaluator assigned the highest rating of 5.
 
