@@ -55,9 +55,9 @@ For this workshop, we have prepared synthetic data containing call transcripts o
 > **Note:** Ensure participants have access to all necessary Azure resources and credentials before starting the workshop. Checkout [prerequisites](#prerequisites) section.
 
 ## Lab #1: (Optional) Create evaluation datasets
-...
+[Start the Lab](./lab1_create_evaluation_datasets.md)
 
-## Lab #2: Use manual evaluation by humans to compare models responses
+## Lab #2: Use human manual evaluation to compare model responses
 
 [Start the Lab](./lab2_manual_evaluation.md)
 

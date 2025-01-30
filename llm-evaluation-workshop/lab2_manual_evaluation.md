@@ -1,4 +1,4 @@
-# Use manual evaluation by humans to compare models responses
+# Use human manual evaluation to compare model responses
 
 Manual evaluation let your researchers to use their own judgement to evaluate the quality of the model. Azure AI Foundry let you easily provide prompt inputs and results and compare them in real-time with your deployed LLM model responses.
 
