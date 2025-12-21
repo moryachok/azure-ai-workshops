@@ -3,7 +3,7 @@
   "description": null,
   "dataSourceName": "rag-workshop-csv-datasource",
   "skillsetName": "rag-workshop-csv-skillset",
-  "targetIndexName": "rag-workshop-csv-support-cases",
+  "targetIndexName": "rag-workshop-csv-index",
   "disabled": null,
   "schedule": null,
   "parameters": {

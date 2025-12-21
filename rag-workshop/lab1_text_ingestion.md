@@ -4,7 +4,7 @@ Data ingestion is crucial part of building RAG system. Azure AI Search has multi
 
 In this lab you're going to learn about Azure AI Search ingestion pipeline features such as Indexer, Skillset and Data Sources.
 
-Its important to mention that you can also use Auzre Search python SDK or Rest API to ingest data directly from your sources or build custom connectors. [Learn more about ingesting data using SDK or Rest API.](https://learn.microsoft.com/en-us/azure/search/search-what-is-data-import)
+Its important to mention that you can also use Azure Search python SDK or Rest API to ingest data directly from your sources or build custom connectors. [Learn more about ingesting data using SDK or Rest API.](https://learn.microsoft.com/en-us/azure/search/search-what-is-data-import)
 
 ## About Indexer, Skillset and Data Source
 
@@ -217,7 +217,7 @@ Index Projections configuration defines how processed data gets stored in the ta
 - `chunk` - the actual text content of each chunk.
 - `chunk_vector` - the 1536-dimensional embedding from skill #2.
 - `header` - the h1 heading associated with the chunk (for context).
-- `metadata_storage_path` - original file location in Azure Storage Account. This helps you track where your chaunks originate from.
+- `metadata_storage_path` - original file location in Azure Storage Account. This helps you track where your chunks originate from.
 - `metadata_storage_name` - original filename in Azure Storage Account.
 - `projectionMode=skipIndexingParentDocuments` is default, meaning we are not interested in ingesting the origin file entirely.
 

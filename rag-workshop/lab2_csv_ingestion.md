@@ -48,7 +48,7 @@ Your Storage Account now should look like this
 
 - In the left navigation bar go to Search Management -> Indexes. Ensure `rag-workshop-csv-index` has been created. ![alt text](assets/csv-index-created.png)
 
-- Click on the index name then click on `Fields` to explore index schema. Note that index schema corresponds the CSV file schema + `metadata_storage_path` for tracking back the original file path on Azure Storage. Some CSV fields such as `customer_email` and `customer_gender` were ommited as they are not relevant to our use case.
+- Click on the index name then click on `Fields` to explore index schema. Note that index schema corresponds the CSV file schema + `metadata_storage_path` for tracking back the original file path on Azure Storage. Some CSV fields such as `customer_email` and `customer_gender` were omited as they are not relevant to our use case.
 
 - Note `ticket_description_vector` field of type `SingleCollection` with `Dimension` configuration of `1536`. This field will be populated with embedding vectors generated with `text-embedding-3-small` model. 
 
@@ -108,7 +108,7 @@ Go to Search Management -> Indexers. Click `add indexer`.
 
 ## Run ingestion
 
-Go to Search Management -> Indexers. Click on your `rag-workshop-docx-indexer`.
+Go to Search Management -> Indexers. Click on your `rag-workshop-csv-indexer`.
 
 Click `Run` button and wait few seconds.
 
