@@ -8,7 +8,7 @@ In this workshop, you'll explore how to build end-to-end RAG (retrieval augmente
 
 The expected duration for the entire workshop is approximately **2 hours**.
 
-[Start the workshop.](./llm-evaluation-workshop/README.md)
+[Start the workshop.](./rag-workshop/README.md)
 
 ### [Workshop 2: Evaluate your LLM application with Azure AI Foundry](./llm-evaluation-workshop/README.md)
 
