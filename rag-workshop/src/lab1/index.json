@@ -1,0 +1,149 @@
+{
+  "name": "rag-workshop-docx-index",
+  "fields": [
+    {
+      "name": "chunk_id",
+      "type": "Edm.String",
+      "searchable": true,
+      "filterable": false,
+      "retrievable": true,
+      "sortable": true,
+      "facetable": false,
+      "key": true,
+      "analyzer": "keyword",
+      "synonymMaps": []
+    },
+    {
+      "name": "parent_id",
+      "type": "Edm.String",
+      "searchable": false,
+      "filterable": true,
+      "retrievable": true,
+      "sortable": false,
+      "facetable": false,
+      "key": false,
+      "synonymMaps": []
+    },
+    {
+      "name": "chunk",
+      "type": "Edm.String",
+      "searchable": true,
+      "filterable": false,
+      "retrievable": true,
+      "sortable": false,
+      "facetable": false,
+      "key": false,
+      "synonymMaps": []
+    },
+    {
+      "name": "header",
+      "type": "Edm.String",
+      "searchable": true,
+      "filterable": false,
+      "retrievable": true,
+      "sortable": false,
+      "facetable": false,
+      "key": false,
+      "synonymMaps": []
+    },
+    {
+      "name": "chunk_vector",
+      "type": "Collection(Edm.Single)",
+      "searchable": true,
+      "filterable": false,
+      "retrievable": false,
+      "sortable": false,
+      "facetable": false,
+      "key": false,
+      "dimensions": 1536,
+      "vectorSearchProfile": "hnsw",
+      "synonymMaps": []
+    },
+    {
+      "name": "metadata_storage_name",
+      "type": "Edm.String",
+      "searchable": true,
+      "filterable": false,
+      "retrievable": true,
+      "sortable": false,
+      "facetable": false,
+      "key": false,
+      "synonymMaps": []
+    },
+    {
+      "name": "metadata_storage_path",
+      "type": "Edm.String",
+      "searchable": true,
+      "filterable": false,
+      "retrievable": true,
+      "sortable": false,
+      "facetable": false,
+      "key": false,
+      "synonymMaps": []
+    }
+  ],
+  "scoringProfiles": [],
+  "suggesters": [],
+  "analyzers": [],
+  "normalizers": [],
+  "tokenizers": [],
+  "tokenFilters": [],
+  "charFilters": [],
+  "similarity": {
+    "@odata.type": "#Microsoft.Azure.Search.BM25Similarity"
+  },
+  "semantic": {
+    "defaultConfiguration": "semantic",
+    "configurations": [
+      {
+        "name": "semantic",
+        "flightingOptIn": false,
+        "rankingOrder": "BoostedRerankerScore",
+        "prioritizedFields": {
+          "titleField": {
+            "fieldName": "metadata_storage_name"
+          },
+          "prioritizedContentFields": [
+            {
+              "fieldName": "chunk"
+            }
+          ],
+          "prioritizedKeywordsFields": []
+        }
+      }
+    ]
+  },
+  "vectorSearch": {
+    "algorithms": [
+      {
+        "name": "hnsw",
+        "kind": "hnsw",
+        "hnswParameters": {
+          "metric": "cosine",
+          "m": 4,
+          "efConstruction": 400,
+          "efSearch": 500
+        }
+      }
+    ],
+    "profiles": [
+      {
+        "name": "hnsw",
+        "algorithm": "hnsw",
+        "vectorizer": "vectorizer"
+      }
+    ],
+    "vectorizers": [
+      {
+        "name": "vectorizer",
+        "kind": "azureOpenAI",
+        "azureOpenAIParameters": {
+          "resourceUri": "https://<YOUR FOUNDRY RESOURCE URL>.openai.azure.com",
+          "deploymentId": "text-embedding-3-small",
+          "modelName": "text-embedding-3-small"
+        }
+      }
+    ],
+    "compressions": []
+  }
+}

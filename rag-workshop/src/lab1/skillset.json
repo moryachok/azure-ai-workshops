@@ -1,0 +1,90 @@
+{
+  "name": "rag-workshop-docx-skillset",
+  "description": "Skillset to chunk documents and generate embeddings",
+  "skills": [
+    {
+      "@odata.type": "#Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill",
+      "name": "#1",
+      "context": "/document",
+      "outputMode": "oneToMany",
+      "markdownHeaderDepth": "h3",
+      "outputFormat": "markdown",
+      "extractionOptions": [],
+      "inputs": [
+        {
+          "name": "file_data",
+          "source": "/document/file_data",
+          "inputs": []
+        }
+      ],
+      "outputs": [
+        {
+          "name": "markdown_document",
+          "targetName": "markdownDocument"
+        }
+      ]
+    },
+    {
+      "@odata.type": "#Microsoft.Skills.Text.AzureOpenAIEmbeddingSkill",
+      "name": "#2",
+      "context": "/document/markdownDocument/*",
+      "resourceUri": "https://<YOUR FOUNDRY RESOURCE URL>.openai.azure.com",
+      "apiKey": "INSERT YOUR MICROSOFT FOUNDRY API KEY",
+      "deploymentId": "text-embedding-3-small",
+      "dimensions": 1536,
+      "modelName": "text-embedding-3-small",
+      "inputs": [
+        {
+          "name": "text",
+          "source": "/document/markdownDocument/*/content",
+          "inputs": []
+        }
+      ],
+      "outputs": [
+        {
+          "name": "embedding",
+          "targetName": "embedding"
+        }
+      ]
+    }
+  ],
+  "indexProjections": {
+    "selectors": [
+      {
+        "targetIndexName": "rag-workshop-docx-index",
+        "parentKeyFieldName": "parent_id",
+        "sourceContext": "/document/markdownDocument/*",
+        "mappings": [
+          {
+            "name": "chunk",
+            "source": "/document/markdownDocument/*/content",
+            "inputs": []
+          },
+          {
+            "name": "chunk_vector",
+            "source": "/document/markdownDocument/*/embedding",
+            "inputs": []
+          },
+          {
+            "name": "header",
+            "source": "/document/markdownDocument/*/sections/h1",
+            "inputs": []
+          },
+          {
+            "name": "metadata_storage_path",
+            "source": "/document/metadata_storage_path",
+            "inputs": []
+          },
+          {
+            "name": "metadata_storage_name",
+            "source": "/document/metadata_storage_name",
+            "inputs": []
+          }
+        ]
+      }
+    ],
+    "parameters": {
+      "projectionMode": "skipIndexingParentDocuments"
+    }
+  }
+}

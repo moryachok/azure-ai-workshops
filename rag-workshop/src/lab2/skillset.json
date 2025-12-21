@@ -1,0 +1,29 @@
+{
+  "name": "rag-workshop-csv-skillset",
+  "description": "vectorizing plain text files using OpenAI text-embedding-3-small",
+  "skills": [
+    {
+      "@odata.type": "#Microsoft.Skills.Text.AzureOpenAIEmbeddingSkill",
+      "name": "#1",
+      "context": "/document",
+      "resourceUri": "https://<YOUR FOUNDRY RESOURCE URL>.openai.azure.com",
+      "apiKey": "INSERT YOUR MICROSOFT FOUNDRY API KEY",
+      "deploymentId": "text-embedding-3-small",
+      "dimensions": 1536,
+      "modelName": "text-embedding-3-small",
+      "inputs": [
+        {
+          "name": "text",
+          "source": "/document/ticket_description",
+          "inputs": []
+        }
+      ],
+      "outputs": [
+        {
+          "name": "embedding",
+          "targetName": "embedding"
+        }
+      ]
+    }
+  ]
+}

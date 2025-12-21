@@ -1,0 +1,34 @@
+{
+  "name": "rag-workshop-docx-indexer",
+  "description": null,
+  "dataSourceName": "rag-workshop-docx-datasource",
+  "skillsetName": "rag-workshop-docx-skillset",
+  "targetIndexName": "rag-workshop-docx-index",
+  "disabled": null,
+  "schedule": null,
+  "parameters": {
+    "batchSize": null,
+    "maxFailedItems": null,
+    "maxFailedItemsPerBatch": null,
+    "configuration": {
+      "parsingMode": "default",
+      "allowSkillsetToReadFileData": true
+    }
+  },
+  "fieldMappings": [
+    {
+      "sourceFieldName": "metadata_storage_name",
+      "targetFieldName": "metadata_storage_name",
+      "mappingFunction": null
+    },
+    {
+      "sourceFieldName": "metadata_storage_path",
+      "targetFieldName": "metadata_storage_path",
+      "mappingFunction": null
+    }
+  ],
+   "outputFieldMappings": [
+  ],
+  "cache": null,
+  "encryptionKey": null
+}
