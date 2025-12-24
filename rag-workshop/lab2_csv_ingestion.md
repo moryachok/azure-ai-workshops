@@ -1,4 +1,4 @@
-# Ingest and vectorize CSV data into Azure AI Search using Indexer and Skillsets
+# Lab 1 - Ingest and vectorize CSV data into Azure AI Search using Indexer and Skillsets
 
 In this section you are going to use the same building blocks from [Lab1](./lab1_text_ingestion.md) to ingest CSV data into AI Search index.
 

@@ -114,22 +114,11 @@
       "synonymMaps": []
     },
     {
-      "name": "first_response_time",
-      "type": "Edm.DateTimeOffset",
-      "searchable": false,
-      "filterable": false,
-      "retrievable": true,
-      "sortable": true,
-      "facetable": false,
-      "key": false,
-      "synonymMaps": []
-    },
-    {
       "name": "metadata_storage_path",
       "type": "Edm.String",
       "searchable": true,
-      "filterable": false,
-      "retrievable": false,
+      "filterable": true,
+      "retrievable": true,
       "sortable": false,
       "facetable": false,
       "key": false,

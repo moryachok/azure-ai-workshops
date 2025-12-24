@@ -1,4 +1,4 @@
-# Ingest and vectorize text files into Azure AI Search using Indexer and Skillsets
+# Lab 1 - Ingest and vectorize text files into Azure AI Search using Indexer and Skillsets
 
 Data ingestion is crucial part of building RAG system. Azure AI Search has multiple features to help you to transform, enrich and ingest data into AI Search indexes.
 
