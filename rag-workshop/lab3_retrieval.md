@@ -324,14 +324,14 @@ Table below shows how document position affected by semantic ranking.
 
 | Chunk ID (short) | Hybrid Query Position | Semantic Ranking Position | Δ (Promotion by Semantic) |
 |-----------------|-----------------------|----------------------------|---------------------------|
-| 11cfb3d186…doc_0 | 2 | 1 | +1 |
-| 11cfb3d186…doc_2 | 3 | 2 | +1 |
-| 11cfb3d186…doc_0 | 1 | 3 | -2 |
-| 11cfb3d186…doc_2 | 6 | 4 | +2 |
-| 11cfb3d186…doc_3 | 8 | 5 | +3 |
-| 11cfb3d186…doc_1 | 4 | 6 | -2 |
-| 11cfb3d186…doc_3 | 5 | 7 | -2 |
-| 11cfb3d186…doc_1 | 7 | 8 | -1 |
+| 11cfb3d186…doc_0 | 2 | 1 | ↑1 |
+| 11cfb3d186…doc_2 | 3 | 2 | ↑1 |
+| 11cfb3d186…doc_0 | 1 | 3 | ↓2 |
+| 11cfb3d186…doc_2 | 6 | 4 | ↑2 |
+| 11cfb3d186…doc_3 | 8 | 5 | ↑3 |
+| 11cfb3d186…doc_1 | 4 | 6 | ↓2 |
+| 11cfb3d186…doc_3 | 5 | 7 | ↓2 |
+| 11cfb3d186…doc_1 | 7 | 8 | ↓1 |
 
 ### Enable query rewrite 
 
