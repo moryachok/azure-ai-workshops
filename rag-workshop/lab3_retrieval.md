@@ -401,6 +401,7 @@ In this lab you've learned about different query types you probably ask yourself
 Based on the [benchmark](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/azure-ai-search-outperforming-vector-search-with-hybrid-retrieval-and-reranking/3929167) executed by Microsoft team Hybrid Query with Semantic reranker provides the **best accuracy**. 
 
 ![alt text](assets/query-benchmark.png)
-Still we recommend to run your own tests and see what works best for you data in terms of accuracy versus speed of retrieval.
+
+We recommend to run your own tests and see what works best for you data in terms of accuracy versus speed of retrieval.
 
 For indexes configured with Vectorizer and Semantic Reranker the Search explorer in the AI Search UI uses **Hybrid + Semantic Reranker** mode by default.
