@@ -205,7 +205,6 @@ Switch to Search explorer -> View -> JSON View
 Replace the contents of **JSON query editor** with the following JSON and click on **Search** button.
 ```json
 {
-  "search": "How can I change my mailing address?",
   "count": true,
   "vectorQueries": [
     {
@@ -227,7 +226,6 @@ You can also apply filters to narrow down the vectors space on which AI search w
 
 ```json
 {
-  "search": "How can I change my mailing address?",
   "count": true,
   "filter": "metadata_storage_name eq 'how-to-guides.docx'",
   "vectorFilterMode": "preFilter",
