@@ -1,29 +1,33 @@
 # Lab3 - Search and Retrieval with Search Explorer
 
-In this lab you are going to run queries. You will be running simple free text queries, vector queries, hybrid queries, applying filters and semantic ranking. You will learn how how to read AI Search query results and understand the differences between different query types and when to use what.
+In this lab you are going to run queries. You will be running free text queries also known as keyword queries, vector queries, hybrid queries, applying filters and semantic ranking. You will learn how to read AI Search query results and understand the differences between different query types and when to use what.
 
 ## About query types
 Before diving into the searches let's review different query types supported in Azure AI Search.
 
-- **Simple** (or free-text) query - AI Search acts as textual search engine. It matches user query to keywords in the index using it's internal algoryithms.
+- **Keyword** (or free-text) query - AI Search acts as textual search engine. It matches user query to keywords in the index using it's internal algorithms.
 
-- **Vector Search** - AI Search acting as Vector Database and enables so-called ANN (approximate nearest neighbours) search to find what vectors are mathematically closer to the vector submitted by a user. Few things must happen to make it work. Textual information in the database must be translated to vectors and saved on the index - that is exactly what you did in the Lab1 and Lab2. User query also need to be translated to vector to allow vector-to-vectors search. User query in-transit translation is made possible index `Vector Profile` that is configured on the index itself. `Vector profile` connected to embedding model deployed in Microsoft Foundry.
+- **Vector Search** - AI Search acting as Vector Database and enables so-called ANN (approximate nearest neighbours) search to find what vectors are mathematically closer to the vector submitted by a user. Few things must happen to make it work:
+  - Textual information in the database must be translated to vectors and saved on the index - that is exactly what you did in the Lab1 and Lab2. 
+  - User query also need to be translated to vector to allow vector-to-vectors search. User query in-transit translation is made possible index `Vector Profile` that is configured on the index itself. `Vector profile` connected to embedding model deployed in Microsoft Foundry.
 ![alt text](assets/vector-profile.png)
 You can review `src/lab1/index.json` entire `vectorSearch` section of the json configuration.
 
-- **Hybrid Search** - is a mix of free-text search + vector search. AI Search runs both searches and then combines the results form both queries to achieve maximum accuracy. Often you achieve best accuracy by using this option.
+- **Hybrid Search** - is a mix of keyword search + vector search. AI Search runs both searches and then combines the results form both queries to achieve maximum accuracy. Often you achieve best accuracy by using this option.
 
 To learn more about each of these types visit AI Search [documentation](https://learn.microsoft.com/en-us/azure/search/search-query-overview).
 
 ## Mastering Search explorer
 
-Search Explorer which is a great tool to run queries and in an isolated manner before you coonnect AI Search to any application or AI agent.
+Search Explorer is a great tool to run and test queries before you connect AI Search to any application or AI agent.
 
 Go to Azure AI Search -> Search Mangement -> Indexes -> `rag-workshop-docx-index` to open a Search explorer.
 
 Click on **Search** and review the results...
 
-Congrats, you just ran your first Hybrid Search 🤓.
+![alt text](assets/first-hybrid-query.png) 
+
+Congrats! You just ran your first Hybrid search query 🤓.
 
 This is because hybrid search is activated automatically on any index includes vectors when working with Search Explorer.
 
@@ -35,7 +39,7 @@ Click on **Query options**.
 
 ![alt text](assets/search-explorer-query-options-opened.png) 
 
-**Vector search is ON** - meaning every Search in the Search explorer will run vector query. This is done alongside the free-text query making it Hybrid Search query.
+**Vector search is ON** - meaning every Search in the Search explorer will run vector query. This is done alongside the keyword query making it Hybrid Search query.
 
 **Semantic Ranker is ON** - this configuration let you refine the results even further. You will learn about Semantic Ranking and it's affect later in this lab.
 
@@ -50,7 +54,7 @@ Go back to **Search explorer** and click **Search**.
 > If you encounter 
 `InvalidVectorQuery: The 'text' property of the 'text' vector query can't be null or empty` error just **disable** Vector Search and Semantic Ranker in the **Query options** again.
 
-## Free text search
+## Keyword search
 
 Let's start with some simple query. Open Search explorer on `rag-workshop-csv-index` index. In a Search bar type the following query and click on Search.
 
@@ -164,7 +168,7 @@ Click **Search** and review the results.
 
 3. Only first document actually refers to *Dyson Vacuum Cleaner*, other results seem unrelevant to what you searched. You can also see how `@search.score` dropped from being `19` on first result to `6` and below to others. Without going too deep into this worth mentioning that this is how Search Engines work - they deconstruct the input query and calculate relevance of each word compared to the corpus of data using [inverted index](https://en.wikipedia.org/wiki/Inverted_index). You have a way to limit results and boost score, but this is out of scope of this Lab.
 
-Now that you've learned how to query your AI Search indexes with free-text search it is time to do some advanced type of queries. 
+Now that you've learned how to query your AI Search indexes with keyword search it is time to do some advanced type of queries. 
 
 ## Vector Query
 
@@ -242,7 +246,7 @@ For advanced topics such as running multi-vector queries, setting weights and th
 
 ## Hybrid Query
 
-Hybrid query is a combination of both free-text search and vector search to [achieve better accuracy in results](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/azure-ai-search-outperforming-vector-search-with-hybrid-retrieval-and-reranking/3929167). Behind the scenes AI Search actually runs two parallel queries, then it merged and reorders the results and returns a unified result set. 
+Hybrid query is a combination of both keyword search and vector search to [achieve better accuracy in results](https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/azure-ai-search-outperforming-vector-search-with-hybrid-retrieval-and-reranking/3929167). Behind the scenes AI Search actually runs two parallel queries, then it merged and reorders the results and returns a unified result set. 
 
 Add `"search": "How can I change my mailing address?"` to your previous search to execute Hybrid query and let's review the results.
 
@@ -261,7 +265,7 @@ Add `"search": "How can I change my mailing address?"` to your previous search t
 }
 ```
 
-First to notice is that the results contain 8 documents and not 3 as in vector query. This is because `k` parameter has no effect on the free-text search part of a hybrid query. If you want to limit the free text results use `top` parameter.
+First to notice is that the results contain 8 documents and not 3 as in vector query. This is because `k` parameter has no effect on the keyword search part of a hybrid query. If you want to limit the keyword results use `top` parameter.
 
 `@search.score` is on a different scale when comparing results between vector and hybrid queries. You cannot compare scores between two different query types, because score is relative to the specific query and calculated dynamically, however notice the significant score drop between 3rd and 4th documents in a hybrid query. This is because the first 3 documents found by vector search (k=3) and the rest were picked by free-text.
 - Vector scores: 0.62679213, 0.6107838, 0.6007314

@@ -1,13 +1,13 @@
 # Lab 1 - Ingest and vectorize CSV data into Azure AI Search using Indexer and Skillsets
 
-In this section you are going to use the same building blocks from [Lab1](./lab1_text_ingestion.md) to ingest CSV data into AI Search index.
+In this section you are going to use the same building blocks from [Lab1](./lab1_text_ingestion.md) to ingest CSV data into AI Search index with a slight difference in a chunking strategy, hense it's important to understand how to build ingestion pipeline components to support different source data formats.
 
 ## Explore CSV Data
 
 Open `datasets/csv/customer_support_tickets_part1.csv`.
-The file contains sample data of technical support tickets. By ingesting this data into Azure AI Search you can implement *Find similar cases* functionality. You will be able to search for an issue and see if there are cases in the system that solves the issue you encounter. 
+The file contains sample data of technical support tickets. By ingesting this data into Azure AI Search you can implement *Find similar cases* functionality. You will be able to search for an issue and see if there are cases in the system that solve the issue you encounter. 
 
-CSV also great as it gives you plenty of additional metadata that can be used to apply filters. For example you can run searches against `ticket_subject` and `ticket_description` fields look for similar ticket that was resolved in a past and then explore what was the resolution from the `resolution` field. To narrow down the search you can filter the data with `ticket_status=Closed` to search only resolved tickets. 
+CSV is great as it gives you plenty of additional metadata that can be used to apply filters. For example you can run searches against `ticket_subject` and `ticket_description` fields to look for similar ticket that was resolved in a past and then explore what was the resolution from the `resolution` field. To narrow down the search you can filter the data with `ticket_status=Closed` to search only resolved tickets. 
 Filters are great way to improve accuracy and performance of your searches.
 
 When ingesting CSV files your target index schema should correspond the source CSV schema to allow you greater flexibility on filtering metadata.
@@ -40,7 +40,7 @@ Your Storage Account now should look like this
 2. Copy the full contents of `src/lab2/index.json` from the repository, then paste it into the editor. Review the index name and schema to ensure they match your expected query patterns and required fields. !
 ![alt text](assets/copy-csv-index.png) 
 
-3. Scroll down to the bottom of index configuration till you see `vectorizers` section. Change the `resourceUri` field to correspond previously create Microsoft Foundry endpoint. ![alt text](assets/vectorizers.png)
+3. Scroll down to the bottom of index configuration till you see `vectorizers` section. Change the `resourceUri` field to correspond previously created Microsoft Foundry endpoint. ![alt text](assets/vectorizers.png)
 
 4. Click **Save**
 
@@ -88,23 +88,32 @@ This is where you choose `ticket_description` to be used for creating vectors.
 
 ## Create Indexer
 
-Go to Search Management -> Indexers. Click `add indexer`.
+Open and review `src/lab2/indexer.json`.
 
-**Basic Settings:**
+```json
+"configuration": {
+    "dataToExtract": "contentAndMetadata",
+    "parsingMode": "delimitedText",
+    "firstLineContainsHeaders": true,
+    "delimitedTextDelimiter": ","
+}
+```
+Note indexer configuration responsible for CSV format processing.
 
-- Name = `rag-workshop-csv-indexer`.
-- Index = `rag-workshop-csv-index`.
-- Datasource = `rag-workshop-csv-datasource`.
-- Skillset = `rag-workshop-csv-skillset`.
-- Schedule = `Once`.
+```json
+"outputFieldMappings": [
+    {
+        "sourceFieldName": "/document/embedding/*",
+        "targetFieldName": "ticket_description_vector",
+        "mappingFunction": null
+    }
+],
+```
+This part let you remap field holding the chunk embeddings into `ticket_description_vector` field. `outputFieldMappings` parameter is not supported in AI Search UI, hence in this lab you are creating the indexer using JSON configuration.
 
-**Advanced Settings:**
-
-- Data to extract = `Content and Metadata`.
-- Parsing mode = `Delimeted Text`.
-- First line contains header = `Checked`.
-- Allow Skillset to read file data = `Checked`.
-- Skip other fields, scroll up and click **Save**.
+1. Go to Search Management -> Indexers. Click `add indexer (JSON)`.
+2. Copy the full contents of `src/lab2/indexer.json` from the repository, then paste it into the editor.
+3. Click **Save**.
 
 ## Run ingestion
 
