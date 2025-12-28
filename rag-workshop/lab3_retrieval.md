@@ -1,4 +1,4 @@
-# Lab3 - Search and Retrieval with Search Explorer
+# Lab 3 - Search and Retrieval with Search Explorer
 
 In this lab you are going to run queries. You will be running free text queries also known as keyword queries, vector queries, hybrid queries, applying filters and semantic ranking. You will learn how to read AI Search query results and understand the differences between different query types and when to use what.
 

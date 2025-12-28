@@ -18,7 +18,7 @@
       "type": "Edm.String",
       "searchable": false,
       "filterable": true,
-      "retrievable": false,
+      "retrievable": true,
       "sortable": false,
       "facetable": false,
       "key": false,

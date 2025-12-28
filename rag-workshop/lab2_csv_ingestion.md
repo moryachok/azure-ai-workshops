@@ -1,4 +1,4 @@
-# Lab 1 - Ingest and vectorize CSV data into Azure AI Search using Indexer and Skillsets
+# Lab 2 - Ingest and vectorize CSV data into Azure AI Search using Indexer and Skillsets
 
 In this section you are going to use the same building blocks from [Lab1](./lab1_text_ingestion.md) to ingest CSV data into AI Search index with a slight difference in a chunking strategy, hense it's important to understand how to build ingestion pipeline components to support different source data formats.
 
@@ -136,7 +136,7 @@ Let's upload second CSV file into Azure Storage Account and Run indexer again.
 
 1. Go to your Storage account -> Data Storage -> Containers -> **rag-workshop** -> `csv` folder.
 2. Upload `datasets/csv/customer_support_tickets_part2.csv`
-3. Go to AI Search -> Search Management -> Indexers. Click on your `rag-workshop-docx-indexer`.
+3. Go to AI Search -> Search Management -> Indexers. Click on your `rag-workshop-csv-indexer`.
 4. Click on `Run`. Wait for a minute as the uploaded csv file contains 1000 rows.
 5. Click on `Refresh` and check `Docs succeeded` section to indicate 1000 documents were ingested.
 
