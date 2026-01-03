@@ -1,27 +1,134 @@
-### Questions
-How can I cancel an Amazon order if it’s already been shipped?
+# Lab 4 - Building Support RAG Agent in Microsoft Foundry
 
-What should I do if my package shows delivered but I never received it?
+In this lab you will learn how to create LLM agents connected to your Azure AI Search using Microsoft Foundry Agent Service.
+You will create agent that answers suupport questions solely relying on the internal information stored in the Azure AI Search.
 
-How do I get a refund or replacement for an item that arrived damaged?
-
-Can I change the payment method on an active Amazon subscription?
-
-Is it possible to update the delivery address after placing an order?
-
-How do I find eco-friendly or Climate Pledge Friendly products on Amazon?
-
-What’s the best way to compare different product variants before buying?
-
-How can I find hidden discounts, coupons, or Lightning Deals?
-
-How do I reset my Amazon password and secure my account with 2FA?
-
-As a seller, how can I appeal a deactivated listing or suspended account?
+![alt text](assets/lab4-arch.png) 
 
 
-Lab4 - Connect to Foundry 
-        ○ Create Azure AI Search Connection
-        ○ Connect to Foundry Agent
-        ○ Start asking questions
-        ○ Provide code sample
+## About Microsoft Foundry Agents
+
+Foundry Agent Service help you create, deploy and run LLM agents in production.
+Foundry Agent Service connects the core pieces of Foundry (such as models, tools, and frameworks) into a single runtime. 
+
+![alt text](assets/foundry-agent-service.png) 
+
+It manages conversations, orchestrates tool calls, enforces content safety, and integrates with identity, networking, and observability systems. These activities help ensure that agents are secure, scalable, and production ready. 
+
+To learn more about Foundry Agent Service visit [documentation](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/overview?view=foundry).
+
+## Connect Azure AI Search to Microsoft Foundry
+
+> Ensure you have followed the Prerequisites section and you have active Microsoft Foundry resource and two base LLM models deployed: gpt-4.1 and gpt-4.1-mini. If not please do it now.
+
+### Create your first Foundry Agent
+
+1. Navigate to https://ai.azure.com
+2. Go to Build -> Agents -> **Create agent**
+
+![alt text](assets/create-agent.png) 
+
+3. Name your agent ***RagWorkshopSupportAgent*** and click **Create**
+4. Choose gpt-4.1 model
+5. Paste the following in the instructions
+
+```text
+You are a Customer Support Agent. Your role is to provide accurate, concise, and helpful answers to customer questions.
+
+Goal: Resolve user issues efficiently by delivering clear, actionable responses grounded in verified information.
+
+Knowledge usage: Before responding, always query Azure AI Search to retrieve the most relevant information from the knowledge base. Base your answer strictly on retrieved results; if information is missing or unclear, state the limitation and ask a clarifying question.
+```
+
+6. Expand Knowledge section, click Add -> Set up a data source via tools.
+
+![alt text](assets/agent-setup.png) 
+
+7. In the Select a tool popup choose Azure AI Search -> click **Add tool**.
+
+8. In the Azure AI Search connection dropdown choose your Azure AI Search cluster.
+
+9. Now choose **rag-workshop-docx-index** and click **Add**.
+
+10.  Click on three dots on the AI Search tool -> Parameters
+
+![alt text](assets/index-added-to-agent.png)   
+
+
+11. Choose **Hybrid + Semantic** as your Search type. Reduce Retrieved documents to 1.
+
+12. Click **Save**
+
+Congrats! You successfully created your first RAG AI Agent in Microsoft Foundry.
+You will use gpt-4.1 as agent AI model. You've connected agent to existing index in the Azure AI Search. Now it is time to test it.
+
+### Test your agent
+
+In agent playground ask the following question.
+
+> How can I cancel an Amazon order if it’s already been shipped?
+
+Now explore the results.
+
+![alt text](assets/agent-results.png) 
+
+Notice that the agent response actually grounded to the `datasets/docx/how-to-guides.docx`.
+
+![alt text](assets/how-to-guides-snapshot.png)
+
+This is great as we want this agent to respond solely based on the internal Knowledge base.
+
+### Debug agent response
+
+![alt text](assets/debug-agent.png) 
+
+Besides the agent response you also get some useful information:
+
+- What model responded to a user prompt
+- How long it took agent to generate response
+- How many tokens were used to generate the response
+- What tools were called - in this case Azure AI Search is the tool agent called.
+
+You can also click Debug to see the response trace.
+
+![alt text](assets/debug-trace.png) 
+
+In the debug screen you can dig deeper into the agent call details, explore which tools were called and review the response metadata to see the raw API response and check breakdown into prompt_tokens and completion_tokens for example.
+
+```json
+"usage_info": {
+    "prompt_tokens": 972,
+    "completion_tokens": 156,
+    "total_tokens": 1128
+}
+```
+
+## Publish Agent
+
+Now that your agent is ready you can publish it and integrate this agent into your corporate application, use it to automate some business workflow or connect to the business applications such as Microsoft Teams and Microsoft 365 Copilot.
+
+1. Go to Build -> Agents -> **RagWorkshopSupportAgent**
+2. Click on Publish -> **Publish agent** ![alt text](assets/publish-agent.png)
+
+3. In the Publish popup click on **Publish** and wait few moments...
+
+
+Excellent! Now your agent is published. Publishing promotes an agent from a development asset into a managed Azure resource with a dedicated endpoint, independent identity, and governance capabilities. You now have multiple ways on how to consume this agent programmatically.
+
+![alt text](assets/agent-published.png) 
+
+Responses endpoint allows you to use standard responses api protocol to interract with the agent.
+Close the popup and click on `Code` tab. Here you can see how to call your agent using python.
+
+![alt text](assets/agents-code.png)
+
+To learn more about publishing agents visit [this page](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/publish-agent?view=foundry).
+
+
+## Recap
+
+In this lab you learned how to ground AI agent to your corporate data in Microsoft Foundry.
+You've created AI agent and connected it to the Azure AI Search index. You also learned how to configure Hybrid + Semantic search type that AI agent will execute on retrieval phase. Then you've learned how to debug the results and ensure proper tool was called during the execution using Traces. Finally you've published your agent made it ready for production use.
+
+
+
