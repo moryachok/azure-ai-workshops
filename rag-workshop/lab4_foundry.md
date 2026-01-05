@@ -9,8 +9,8 @@ Microsoft Foundry Agent Service augments development of retrieval logic of your 
 
 ## About Microsoft Foundry Agents
 
-Foundry Agent Service help you create, deploy and run LLM agents in production.
-Foundry Agent Service connects the core pieces of Foundry (such as models, tools, and frameworks) into a single runtime. 
+Foundry Agent Service help you create, deploy and run AI agents in production.
+Foundry Agent Service connects core pieces of Foundry (such as models, tools, and frameworks) into a single runtime. 
 
 ![alt text](assets/foundry-agent-service.png) 
 
@@ -20,7 +20,7 @@ To learn more about Foundry Agent Service visit [documentation](https://learn.mi
 
 ## Connect Azure AI Search to Microsoft Foundry
 
-> Ensure you have followed the Prerequisites section and you have active Microsoft Foundry resource and two base LLM models deployed: gpt-4.1 and gpt-4.1-mini. If not please do it now.
+> Ensure you have followed the [Prerequisites](./README.md#prerequisites) section and you have active Microsoft Foundry resource and two base LLM models deployed: gpt-4.1 and gpt-4.1-mini. If not please do it now.
 
 ### Create your first Foundry Agent
 
@@ -41,7 +41,7 @@ Goal: Resolve user issues efficiently by delivering clear, actionable responses 
 Knowledge usage: Before responding, always query Azure AI Search to retrieve the most relevant information from the knowledge base. Base your answer strictly on retrieved results; if information is missing or unclear, state the limitation and ask a clarifying question.
 ```
 
-6. Expand Knowledge section, click Add -> Set up a data source via tools.
+6. Expand Knowledge section, click **Add** -> **Set up a data source via tools**.
 
 ![alt text](assets/agent-setup.png) 
 
@@ -51,7 +51,7 @@ Knowledge usage: Before responding, always query Azure AI Search to retrieve the
 
 9. Now choose **rag-workshop-docx-index** and click **Add**.
 
-10.  Click on three dots on the AI Search tool -> Parameters
+10.  Click on three dots on the AI Search tool -> **Parameters**
 
 ![alt text](assets/index-added-to-agent.png)   
 
@@ -61,13 +61,15 @@ Knowledge usage: Before responding, always query Azure AI Search to retrieve the
 12. Click **Save**
 
 Congrats! You successfully created your first RAG AI Agent in Microsoft Foundry.
-You will use gpt-4.1 as agent AI model. You've connected agent to existing index in the Azure AI Search. Now it is time to test it.
+You've connected AI agent to existing index in the Azure AI Search and instructed it to rely on data from the AI Search instead of his own knowledge - this called grounding. Now it is time to test it.
 
 ### Test your agent
 
 In agent playground ask the following question.
 
-> How can I cancel an Amazon order if it’s already been shipped?
+```text
+How can I cancel an Amazon order if it’s already been shipped?
+```
 
 Now explore the results.
 
@@ -75,9 +77,11 @@ Now explore the results.
 
 Notice that the agent response actually grounded to the `datasets/docx/how-to-guides.docx`.
 
+---
 ![alt text](assets/how-to-guides-snapshot.png)
+---
 
-This is great as we want this agent to respond solely based on the internal Knowledge base.
+This means that the entire flow worked perfectly. Agent passed user prompt into AI Search, retrieved single document back and responded to a user based on the information from the AI Search index.
 
 ### Debug agent response
 
@@ -85,12 +89,11 @@ This is great as we want this agent to respond solely based on the internal Know
 
 Along with the agent response you also get some useful information:
 
-- What model responded to a user prompt - gpt-4.1-2025-04-14.
-- How long it took agent to generate response - 5.7s.
-- How many tokens were used to generate the response - 1128t.
-- What tools were called - Azure AI Search.
-
-Click **Debug** to see the response trace.
+- What model responded to a user prompt - `gpt-4.1-2025-04-14`.
+- How long it took agent to generate response - `5.7s`.
+- How many tokens were used to generate the response - `1128t`.
+- What tools were called - `Azure AI Search`.
+- Click **Debug** to see the response trace.
 
 ![alt text](assets/debug-trace.png) 
 

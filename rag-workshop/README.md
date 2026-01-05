@@ -23,7 +23,7 @@ Welcome to the Advanced RAG Workshop where you will learn how to build a support
 
 ## Prerequisites
 
-- Create [Microsoft Foundry](https://learn.microsoft.com/en-us/azure/ai-foundry/quickstarts/get-started-code) and deploy `text-embedding-3-small` embedding model.
+- Create [Microsoft Foundry](https://learn.microsoft.com/en-us/azure/ai-foundry/quickstarts/get-started-code) and deploy `text-embedding-3-small` embedding model, `gpt-4.1-mini` and `gpt-4.1`.
 - Create [Azure AI Search cluster](https://learn.microsoft.com/en-us/azure/search/search-create-service-portal).
 - Create [Azure Storage Account](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal). 
 - Create [storage account container](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-portal) with name `rag-workshop`.

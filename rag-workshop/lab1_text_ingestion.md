@@ -33,7 +33,7 @@ Indexers support multiple file formats such as `JSON`, `CSV`, `PDF`, `DOCX`, and
 
 In this lab you are going to use your previously created Azure Storage Account as your integration point with AI Search.
 
-> Ensure you have followed the Prerequisites section and you have active Azure Storage Account. If not please do it now.
+> Ensure you have followed the [Prerequisites](./README.md#prerequisites) section and you have active Azure Storage Account. If not please do it now.
 
 **1.** In the Azure Portal, go to your Storage account -> Data Storage -> Containers. Click on **rag-workshop** container that you've previously created.
 
