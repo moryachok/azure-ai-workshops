@@ -1,7 +1,8 @@
 # Lab 4 - Building Support RAG Agent in Microsoft Foundry
 
-In this lab you will learn how to create LLM agents connected to your Azure AI Search using Microsoft Foundry Agent Service.
-You will create agent that answers suupport questions solely relying on the internal information stored in the Azure AI Search.
+In this lab you will learn how to create AI agents grounded to your corporate data using Azure AI Search and Microsoft Foundry Agent Service.
+
+Microsoft Foundry Agent Service augments development of retrieval logic of your RAG agent. RAG stands for [retrieval augmented generation](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview?tabs=videos). Foundry agent will run searches against connected Azure AI Search upon user prompt. It handles the entire end-to-end flow of retrieving the data from the indexes and summarizing it before responding to a user based on the agent instructions.
 
 ![alt text](assets/lab4-arch.png) 
 
@@ -82,18 +83,18 @@ This is great as we want this agent to respond solely based on the internal Know
 
 ![alt text](assets/debug-agent.png) 
 
-Besides the agent response you also get some useful information:
+Along with the agent response you also get some useful information:
 
-- What model responded to a user prompt
-- How long it took agent to generate response
-- How many tokens were used to generate the response
-- What tools were called - in this case Azure AI Search is the tool agent called.
+- What model responded to a user prompt - gpt-4.1-2025-04-14.
+- How long it took agent to generate response - 5.7s.
+- How many tokens were used to generate the response - 1128t.
+- What tools were called - Azure AI Search.
 
-You can also click Debug to see the response trace.
+Click **Debug** to see the response trace.
 
 ![alt text](assets/debug-trace.png) 
 
-In the debug screen you can dig deeper into the agent call details, explore which tools were called and review the response metadata to see the raw API response and check breakdown into prompt_tokens and completion_tokens for example.
+In the debug screen you can dig deeper into the agent call details, explore which tools were called and review the response metadata to see the raw API response and check things like breakdown into `prompt_tokens` and `completion_tokens`.
 
 ```json
 "usage_info": {
@@ -105,7 +106,7 @@ In the debug screen you can dig deeper into the agent call details, explore whic
 
 ## Publish Agent
 
-Now that your agent is ready you can publish it and integrate this agent into your corporate application, use it to automate some business workflow or connect to the business applications such as Microsoft Teams and Microsoft 365 Copilot.
+Now that your agent is ready you can publish it and integrate into your corporate application. Use it to automate some business workflow or connect to the business applications such as Microsoft Teams and Microsoft 365 Copilot.
 
 1. Go to Build -> Agents -> **RagWorkshopSupportAgent**
 2. Click on Publish -> **Publish agent** ![alt text](assets/publish-agent.png)
@@ -118,6 +119,7 @@ Excellent! Now your agent is published. Publishing promotes an agent from a deve
 ![alt text](assets/agent-published.png) 
 
 Responses endpoint allows you to use standard responses api protocol to interract with the agent.
+
 Close the popup and click on `Code` tab. Here you can see how to call your agent using python.
 
 ![alt text](assets/agents-code.png)

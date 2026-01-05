@@ -67,7 +67,7 @@ Now review the results:
 ![alt text](assets/simple-query-results.png) 
 
 By default search explorer will show the first 50 results.
-If you scroll down you will notice plenty of tickets found related to your query. Note that each document has `@search.score` and all documents sorted by this `@search.score` in a descending order. This is the default behaiviour - AI Search constructed the results based on relevance of documents in a descending order from the most relevant to least ones. To learn more on how `@search.score` is determined visit [this page](https://learn.microsoft.com/en-us/azure/search/search-relevance-overview).
+If you scroll down you will notice plenty of tickets found related to your query. Note that each document has `@search.score` and all documents sorted by this `@search.score` in a descending order. This is the default behaviour - AI Search constructed the results based on relevance of documents in a descending order from the most relevant to least ones. To learn more on how `@search.score` is determined visit [this page](https://learn.microsoft.com/en-us/azure/search/search-relevance-overview).
 
 You can also see some additional useful metadata returned as part of each document such as `ticket_id`, `ticket_type`, `ticket_subject`, `ticket_status` as well as `metadata_storage_path` that indicated the source file location in the Azure Storage tha this document originates from.
 
@@ -162,7 +162,7 @@ Click **Search** and review the results.
 
 ```
 
-1. `@odata.count": 76` - AI Search found total of 76 results corresponds to your search query out of **1010** documents in the index. Data scanned reduced drammatically when using filters.
+1. `@odata.count": 76` - AI Search found total of 76 results corresponds to your search query out of **1010** documents in the index. Data scanned reduced dramatically when using filters.
 
 2. All the results filtered to Technical issue with status = Closed.
 
@@ -273,7 +273,7 @@ To learn more about hybrid search visit [documentation](https://learn.microsoft.
 
 ## Using Semantic ranking
 
-Now that you understand differences between keyword search, vector search and hybrid search let's review another capability that improves retrieval relevance - Semanic renking.
+Now that you understand differences between keyword search, vector search and hybrid search let's review another capability that improves retrieval relevance - Semantic renking.
 
 Semantic ranker operates on top of other search types. 
 Take the previous hybrid query against `rag-workshop-docx-index` and keep the page open to compare the results against another query with semantic ranking enabled.
