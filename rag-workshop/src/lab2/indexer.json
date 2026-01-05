@@ -1,0 +1,36 @@
+{
+  "name": "rag-workshop-csv-indexer",
+  "description": null,
+  "dataSourceName": "rag-workshop-csv-datasource",
+  "skillsetName": "rag-workshop-csv-skillset",
+  "targetIndexName": "rag-workshop-csv-index",
+  "disabled": null,
+  "schedule": null,
+  "parameters": {
+    "batchSize": null,
+    "maxFailedItems": null,
+    "maxFailedItemsPerBatch": null,
+    "configuration": {
+      "dataToExtract": "contentAndMetadata",
+      "parsingMode": "delimitedText",
+      "firstLineContainsHeaders": true,
+      "delimitedTextDelimiter": ","
+    }
+  },
+  "fieldMappings": [
+    {
+      "sourceFieldName": "metadata_storage_path",
+      "targetFieldName": "metadata_storage_path",
+      "mappingFunction": null
+    }
+  ],
+  "outputFieldMappings": [
+    {
+      "sourceFieldName": "/document/embedding/*",
+      "targetFieldName": "ticket_description_vector",
+      "mappingFunction": null
+    }
+  ],
+  "cache": null,
+  "encryptionKey": null
+}

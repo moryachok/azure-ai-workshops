@@ -3,6 +3,8 @@
 .DS_Store
 Thumbs.db
 
+.history/
+
 # Python #
 ###########
 __pycache__/

@@ -1,0 +1,18 @@
+{
+  "name": "rag-workshop-docx-datasource",
+  "description": null,
+  "type": "azureblob",
+  "subtype": null,
+  "indexerPermissionOptions": [],
+  "credentials": {
+    "connectionString": ""
+  },
+  "container": {
+    "name": "rag-workshop",
+    "query": "docx"
+  },
+  "dataChangeDetectionPolicy": null,
+  "dataDeletionDetectionPolicy": null,
+  "encryptionKey": null,
+  "identity": null
+}
